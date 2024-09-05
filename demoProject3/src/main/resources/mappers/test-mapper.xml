@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.kh.demo.mapper.TestMapper">
+
+
+<!-- 사용자 이름 조회 -->
+	<select id="selectuUserName"
+			parameterType="_int"
+			resultType="string">
+			
+		SELECT USER_NAME
+		FROM TB_USER
+		WHERE USER_NO = #{userNo}
+	</select>
+
+</mapper>
