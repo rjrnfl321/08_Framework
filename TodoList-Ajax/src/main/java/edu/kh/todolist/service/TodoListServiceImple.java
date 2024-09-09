@@ -71,4 +71,11 @@ public class TodoListServiceImple implements TodoListService {
 
 		return mapper.todoDelete(todoNo);
 	}
+
+	
+	@Override
+	public String searchTitle(int todoNo) {
+
+		return mapper.searchTitle(todoNo);
+	}
 }
