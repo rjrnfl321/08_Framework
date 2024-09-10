@@ -72,10 +72,26 @@ public class TodoListServiceImple implements TodoListService {
 		return mapper.todoDelete(todoNo);
 	}
 
-	
 	@Override
 	public String searchTitle(int todoNo) {
 
 		return mapper.searchTitle(todoNo);
+	}
+
+	// 전체 할 일 개수 조회
+	@Override
+	public int getTotalCount() {
+		return mapper.getTotalCount();
+	}
+	
+	// 완료된 할 일 개수 조회
+	@Override
+	public int getCompleteCount() {
+		return mapper.selectCompleteCount();
+	}
+
+	@Override
+	public List<Todo> getTodoList() {
+		return mapper.selectTodoList();
 	}
 }
