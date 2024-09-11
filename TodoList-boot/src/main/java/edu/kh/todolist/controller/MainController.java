@@ -16,6 +16,7 @@ public class MainController {
 
 	@Autowired // 등록된 Bean 중에서 같은 자료형 객체를 의존성 주입(DI)
 	private TodoListService service;
+	// TodoListService 타입의 객체를 내부에서만 사용하겠다 변수명은 service로 선언
 	
 	/** 메인 페이지
 	 * @param model 데이터 전달용 객체(request scope)

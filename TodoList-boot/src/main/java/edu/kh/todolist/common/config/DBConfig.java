@@ -27,13 +27,22 @@ import com.zaxxer.hikari.HikariDataSource;
  * @PropertySource :  properties 파일의 내용을 이용하겠다는 어노테이션
  */
 
-@Configuration
+@Configuration // 서버 실행시 자동으로 객체 생성, 내부작성된 메서드 모두 실행
+
 @PropertySource("classpath:/config.properties")
+// classpath에 위치하는 config.properties의 내용을
+// @PropertySource 어노테이션을 사용하여
+// 설정 파일을 이용할수 있게 해줌
+
+
 public class DBConfig {
 
-	@Autowired
+	@Autowired // 등록된 Bean 중에 같은 자료형 객체를 의존성 주입 (DI)
+	
 	private ApplicationContext applicationContext;
-
+  // 이 클래스에서 ApplicationContext라는 종류의 정보를 담을 준비를 하고
+	// 외부에서 접근할수 없도록 함
+	
 	// @Bean
 	// - 개발자가 수동으로 bean을 등록하는 어노테이션
 	// - @Bean 어노테이션이 작성된 메서드에서 반환된 객체는
@@ -43,15 +52,32 @@ public class DBConfig {
 	// @ConfigurationProperties(prefix = "spring.datasource.hikari")
 	// properties 파일의 내용을 이용해서 생성되는 bean을 설정하는 어노테이션
 	// prefix를 지정하여 spring.datasource.hikari으로 시작하는 설정을 모두 적용
+	
+	// @ConfigurationProperties : 외부 설정 파일의 값을 Java 객체에 자동으로 매핑
+	//													 -> 설정 값을 코드처럼 다루고 구조화하여 관리 가능
+	
 	@ConfigurationProperties(prefix = "spring.datasource.hikari")
+	// prefix = "spring.datasource.hikari"
+	// 설정 파일에서 spring으로 시작하는 모든 설정을 이 클래스와 매핑함
+	
 	public HikariConfig hikariConfig() {
-		return new HikariConfig();
+		return new HikariConfig(); // 새로운 HikariConfig 객체 생성하고
+															 // 메서드 호출한 곳으로 반환(return)한다
 	}
 
+	// DataSource : Java의 표준 인터페이스 DB 연결 생성 및 관리하는 기능
+	
 	@Bean
 	public DataSource dataSource(HikariConfig config) {
+		// 메서드의 매개변수로 HikariConfig config 받는 이유?
+		// - 메서드가 DataSource 객체를 생성할때 필요한 설정 정보들을
+		//   외부에서 받아와 사용하기 위해서  
+		
 		DataSource dataSource = new HikariDataSource(config);
-		return dataSource;
+		// DB 연결을 관리하는 new HikariDataSource 객체 생성하고
+		// dataSource 변수에 저장
+		
+		return dataSource; // dataSource 객체를 메서드 호출한 곳으로 반환 
 	}
 
 	////////////////////////////Mybatis 설정 추가 ////////////////////////////
