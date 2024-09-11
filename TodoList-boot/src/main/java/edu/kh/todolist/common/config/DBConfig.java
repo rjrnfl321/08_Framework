@@ -1,6 +1,6 @@
 package edu.kh.todolist.common.config;
 
-import javax.sql.DataSource;
+import javax.sql.DataSource; 
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

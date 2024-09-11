@@ -34,7 +34,7 @@ public class MainController {
 		model.addAttribute("todoList", todoList);
 		model.addAttribute("completeCount", completeCount);
 		
-		// classpath:/templates/common/main.gtml forward
+		// classpath:/templates/common/main.html forward
 		return "common/main";
 	}
 }
